@@ -30,28 +30,53 @@ public class PostgresProcessService implements ProcessService {
 
     @Override
     public Long run(String userIp, ProcessCreateDTO processCreateDTO) {
-        Process process = Process.builder()
-                .value(processCreateDTO.getValue())
-                .result(choice(processCreateDTO))
-                .created(Date.valueOf(LocalDate.now()))
-                .requestIp(userIp)
-                .build();
+
+        if (processCreateDTO.getType() == ProcessType.MODIFY) {
+            return modify(processCreateDTO, userIp);
+        } else if (processCreateDTO.getType() == ProcessType.TRANSLATE) {
+            return translate(processCreateDTO, userIp);
+        }
+            throw new IllegalArgumentException("Unsupported type: " + processCreateDTO.getType());
+    }
+
+
+    public Long modify(ProcessCreateDTO processCreateDTO, String userIp) {
+        String value = modifyService.modify(processCreateDTO.getValue());
+        Process process = createProcess(processCreateDTO, userIp, value);
         processDAO.save(process);
         return process.getProcessId();
     }
 
-    @Override
-    public String choice( ProcessCreateDTO process) {
-        String value = "";
-        if(process.getType() == ProcessType.MODIFY){
-           value = modifyService.modify(process.getValue());
-        } else if (process.getType() == ProcessType.TRANSLATE){
-            value = "In progress...";
-            Thread myThread =
-                    new Thread(() -> translateService.translate(process.getValue()));
-            myThread.start();
-        }
-        return value;
+    public Long translate(ProcessCreateDTO processCreateDTO, String userIp) {
+        String value = "In progress...";
+
+        Process process = createProcess(processCreateDTO, userIp, value);
+        processDAO.save(process);
+        Thread thread = new Thread() {
+            public void run() {
+                String value = translateService.fakeTranslate(processCreateDTO);
+                Process updateProcess = Process.builder()
+                        .processId(process.getProcessId())
+                        .value(processCreateDTO.getValue())
+                        .result(value)
+                        .created(Date.valueOf(LocalDate.now()))
+                        .requestIp(userIp)
+                        .build();
+                processDAO.save(updateProcess);
+            }
+        };
+        thread.start();
+        return process.getProcessId();
+    }
+
+    private Process createProcess(ProcessCreateDTO processCreateDTO, String userIp, String result) {
+        Process newProcess = Process.builder()
+                .value(processCreateDTO.getValue())
+                .result(result)
+                .created(Date.valueOf(LocalDate.now()))
+                .requestIp(userIp)
+                .build();
+        return newProcess;
     }
 
 

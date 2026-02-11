@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProcessDAO extends CrudRepository<Process, String> {
-
+    
 }

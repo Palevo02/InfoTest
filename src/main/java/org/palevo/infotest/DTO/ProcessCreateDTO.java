@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+
+import org.hibernate.annotations.processing.Pattern;
 import org.palevo.infotest.utils.ProcessType;
 @Data
 @Getter
@@ -16,6 +18,4 @@ public class ProcessCreateDTO {
     String value;
     String fromLanguage;
     String toLanguage;
-
-
 }
