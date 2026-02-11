@@ -1,17 +1,11 @@
 package org.palevo.infotest.service.text;
 
 import org.palevo.infotest.DTO.ProcessCreateDTO;
-import org.palevo.infotest.DTO.TranslateDTO;
-import org.palevo.infotest.model.Options;
-import org.palevo.infotest.model.ReversoResponse;
-import org.palevo.infotest.model.TranslateReversoRequest;
+import org.palevo.infotest.model.reverso.Options;
+import org.palevo.infotest.model.reverso.ReversoResponse;
+import org.palevo.infotest.model.reverso.TranslateReversoRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 
 @Service
 public class TranslateService {
