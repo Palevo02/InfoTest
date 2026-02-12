@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class TranslateService {
-    private final String TOKEN = "apify_api_P8g5BcE5lBTobxByuB64igGc6VMxW33NodcE";
+    private final String TOKEN = "Token?:)";
     private final String URL = "https://api.reverso.net/translate/v1/translation";
 
     public String fakeTranslate(ProcessCreateDTO processCreateDTO){

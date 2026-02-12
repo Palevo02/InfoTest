@@ -4,11 +4,12 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 import org.palevo.infotest.model.Process;
+import org.palevo.infotest.model.RunningTranslateProcess;
 
 public class ProcessInMemoryDAO implements ProcessDAO {
 
     private final AtomicLong idGenerator = new AtomicLong(1);
-    private final ConcurrentHashMap storage = new ConcurrentHashMap();
+    private final ConcurrentHashMap<Long, Process> storage = new ConcurrentHashMap();
 
     public Process save(Process process) {
         storage.put(idGenerator.getAndIncrement(), process);
