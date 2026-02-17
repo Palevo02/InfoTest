@@ -1,4 +1,4 @@
-package org.palevo.infotest.DAO;
+package org.palevo.infotest.DAO.process;
 
 import org.palevo.infotest.model.Process;
 import org.springframework.data.repository.CrudRepository;

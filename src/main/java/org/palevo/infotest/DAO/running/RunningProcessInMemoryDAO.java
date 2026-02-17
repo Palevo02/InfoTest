@@ -1,15 +1,11 @@
-package org.palevo.infotest.DAO;
+package org.palevo.infotest.DAO.running;
 
-import org.palevo.infotest.model.Process;
-
-import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.palevo.infotest.model.RunningTranslateProcess;
 
-public class RunningProcessInMemoryDAO implements RunningProcessDAO{
+public class RunningProcessInMemoryDAO implements RunningProcessDAO {
     private final AtomicLong idGenerator = new AtomicLong(1);
     private final ConcurrentHashMap<Long,RunningTranslateProcess> storage = new ConcurrentHashMap();
 

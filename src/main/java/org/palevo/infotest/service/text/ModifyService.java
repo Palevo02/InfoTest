@@ -1,6 +1,6 @@
 package org.palevo.infotest.service.text;
 
-import org.palevo.infotest.DAO.ProcessDAO;
+import org.palevo.infotest.DAO.process.ProcessDAO;
 import org.springframework.stereotype.Service;
 
 @Service

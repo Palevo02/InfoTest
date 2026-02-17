@@ -1,10 +1,10 @@
-package org.palevo.infotest.DAO;
+package org.palevo.infotest.DAO.process;
 
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
+
 import org.palevo.infotest.model.Process;
-import org.palevo.infotest.model.RunningTranslateProcess;
 
 public class ProcessInMemoryDAO implements ProcessDAO {
 

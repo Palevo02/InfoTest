@@ -1,8 +1,8 @@
 package org.palevo.infotest.service.process;
 
 import lombok.extern.slf4j.Slf4j;
-import org.palevo.infotest.DAO.ProcessDAO;
-import org.palevo.infotest.DAO.RunningProcessDAO;
+import org.palevo.infotest.DAO.process.ProcessDAO;
+import org.palevo.infotest.DAO.running.RunningProcessDAO;
 import org.palevo.infotest.DTO.ProcessCreateDTO;
 import org.palevo.infotest.model.Process;
 import org.palevo.infotest.model.RunningTranslateProcess;
